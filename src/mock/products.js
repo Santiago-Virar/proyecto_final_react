@@ -1,6 +1,6 @@
 const products = [
 {
-    id: "1",
+    id: 1,
     title: "Remera Adidas Essentials",
     price: 37500,
     category: "remeras",
@@ -9,7 +9,7 @@ const products = [
     image: "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/c8ec321407f846c08a1efac29d24d216_9366/Remera_Essentials_Logo_Pequeno_Tejido_Jersey_Azul_JF1094_01_laydown.jpg",
 },
 {
-    id: "2",
+    id: 2,
     title: "Remera Adidas Essentials Trifolio",
     price: 43500,
     category: "remeras",
@@ -18,7 +18,7 @@ const products = [
     image: "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/7558df97cd6c48d09e67bff263fdd9b2_9366/Remera_Essentials_Trifolio_Verde_JN0235_01_laydown.jpg",
 },
 {
-    id: "3",
+    id: 3,
     title: "Zapatillas Adidas Dame Certified 3",
     price: 122500,
     category: "zapatillas",
@@ -27,13 +27,31 @@ const products = [
     image: "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/f0ccc58c7b1d48bb85a376ca011005d3_9366/Zapatillas_Dame_Certified_3_Verde_JI1542_04_standard.jpg",
 },
 {
-    id: "4",
+    id: 4,
     title: "Zapatillas Adidas D.O.N. Issue 6",
     price: 220500,
     category: "zapatillas",
     stock: 5,
     description: "Zapatillas exclusivas de Donovan Mitchell y adidas Basketball",
     image: "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/5a1b9c2a5b5e42c29f1c53b1860f4324_9366/Zapatilla_D.O.N._Issue_6_Rojo_JI1547_01_00_standard.jpg",
+},
+{
+    id: 5,
+    title: "Remera Adidas Essentials Linear Single Jersey",
+    price: 28500,
+    category: "remeras",
+    stock: 5,
+    description: "Una remera cómoda y fácil de combinar",
+    image: "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/7687d4464b8c4142b9a60d2953e980da_9366/Remera_Essentials_Linear_Single_Jersey_Amarillo_JE9003_01_laydown.jpg",
+},
+{
+    id: 6,
+    title: "Zapatillas Adidas Dropset 2",
+    price: 183000,
+    category: "zapatillas",
+    stock: 5,
+    description: "Zapatillas para entrenamientos de fuerza, hechas parcialmente con materiales reciclados.",
+    image: "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/b76071d9d7aa41488925a73b8873d845_9366/Zapatillas_Dropset_2_Naranja_IE8049_01_standard.jpg",
 },
 ];
 

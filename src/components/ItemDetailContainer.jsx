@@ -1,17 +1,19 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import ItemDetail from './ItemDetail';
-import products from '../mock/products';
+import products from '../mock/products'; // asegurate de que la ruta sea correcta
 
 function ItemDetailContainer() {
     const { itemId } = useParams();
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
-        // Simulamos fetch (después será con Firebase)
+        console.log("ID del producto desde URL:", itemId);
+        console.log("Lista de productos:", products);
+
         const getProduct = new Promise((resolve) => {
             const item = products.find(p => p.id === parseInt(itemId));
-            setTimeout(() => resolve(item), 500); // simula demora
+            console.log("Producto encontrado:", item);
+            setTimeout(() => resolve(item), 500);
         });
 
         getProduct.then(data => setProduct(data));
@@ -19,10 +21,21 @@ function ItemDetailContainer() {
 
     return (
         <div className="container mt-4">
-            {product ? <ItemDetail {...product} /> : <p>Cargando producto...</p>}
+            {product ? (
+                <div>
+                    <h2>{product.title}</h2>
+                    <p>{product.description}</p>
+                    <p>Precio: ${product.price}</p>
+                    <img src={product.image} alt={product.title} width="200" />
+                    {}
+                </div>
+            ) : (
+                <p>Cargando producto...</p>
+            )}
         </div>
     );
 }
 
 export default ItemDetailContainer;
+
 

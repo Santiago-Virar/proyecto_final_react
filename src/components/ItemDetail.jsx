@@ -38,3 +38,4 @@ function ItemDetail({ id, title, price, image, description, stock }) {
 }
 
 export default ItemDetail;
+

@@ -1,12 +1,12 @@
 import { createContext, useState } from 'react';
 
-// Creamos el contexto
 export const CartContext = createContext();
 
 // Proveedor del contexto
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+    const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     // Agregar al carrito
     const addItem = (item, quantity) => {
@@ -33,7 +33,7 @@ export const CartProvider = ({ children }) => {
     };
 
     return (
-        <CartContext.Provider value={{ cart, addItem, removeItem, clearCart, totalQuantity }}>
+        <CartContext.Provider value={{ cart, addItem, removeItem, clearCart, totalQuantity, totalPrice }}>
             {children}
         </CartContext.Provider>
     );

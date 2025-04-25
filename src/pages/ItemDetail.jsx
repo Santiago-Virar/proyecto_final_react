@@ -1,5 +1,11 @@
+import ItemDetailContainer from "../components/ItemDetailContainer";
+
 function ItemDetail() {
-    return <h1>Detalle del producto</h1>;
+    return (
+        <div className="container mt-4">
+            <ItemDetailContainer />
+        </div>
+    );
 }
 
 export default ItemDetail;

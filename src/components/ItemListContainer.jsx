@@ -1,35 +1,34 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import ItemList from './ItemList';
-import products from '../mock/products';
+import { useEffect, useState } from "react";
+import { getProducts } from "../firebase/products"; 
+import ItemList from "./ItemList";
 
 function ItemListContainer() {
-    const [items, setItems] = useState([]);
-    const { categoryId } = useParams();
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const getData = new Promise((resolve) => {
-            setTimeout(() => {
-                if (categoryId) {
-                    const filtered = products.filter((p) => p.category === categoryId);
-                    resolve(filtered);
-                } else {
-                    resolve(products);
-                }
-            }, 1000);
-        });
+        getProducts()
+            .then((response) => {
+                setProducts(response);
+            })
+            .catch((error) => {
+                console.error("Error al cargar productos", error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []);
 
-        getData.then((res) => setItems(res));
-    }, [categoryId]);
+    if (loading) {
+        return <h2 className="text-center mt-4">Cargando productos...</h2>;
+    }
 
     return (
         <div className="container mt-4">
-            <h2 className="mb-4">
-                {categoryId ? `Categoría: ${categoryId}` : 'Productos destacados'}
-            </h2>
-            <ItemList products={items} />
+            <ItemList products={products} />
         </div>
     );
 }
 
 export default ItemListContainer;
+
