@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, doc, getDoc } from "firebase/firestore";
 import { db } from "./config";
 
 export const getProducts = async () => {
@@ -20,4 +20,19 @@ export const getProductsByCategory = async (categoryId) => {
         ...doc.data()
     }));
     return products;
+};
+
+// ⚠️ ESTE ES EL QUE FALTABA:
+export const getProductById = async (id) => {
+    const docRef = doc(db, "products", id);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.exists()) {
+        throw new Error("Producto no encontrado");
+    }
+
+    return {
+        id: docSnap.id,
+        ...docSnap.data()
+    };
 };

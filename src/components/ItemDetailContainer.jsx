@@ -1,41 +1,40 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import products from '../mock/products'; // asegurate de que la ruta sea correcta
+import { getProductById } from '../firebase/products';
+import ItemDetail from '../components/ItemDetail'; 
 
 function ItemDetailContainer() {
     const { itemId } = useParams();
     const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
-        console.log("ID del producto desde URL:", itemId);
-        console.log("Lista de productos:", products);
-
-        const getProduct = new Promise((resolve) => {
-            const item = products.find(p => p.id === parseInt(itemId));
-            console.log("Producto encontrado:", item);
-            setTimeout(() => resolve(item), 500);
-        });
-
-        getProduct.then(data => setProduct(data));
+        setLoading(true);
+        getProductById(itemId)
+            .then(data => {
+                setProduct(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error(err);
+                setError(true);
+                setLoading(false);
+            });
     }, [itemId]);
+
+    if (loading) return <p>Cargando producto...</p>;
+    if (error) return <p>Producto no encontrado ❌</p>;
 
     return (
         <div className="container mt-4">
-            {product ? (
-                <div>
-                    <h2>{product.title}</h2>
-                    <p>{product.description}</p>
-                    <p>Precio: ${product.price}</p>
-                    <img src={product.image} alt={product.title} width="200" />
-                    {}
-                </div>
-            ) : (
-                <p>Cargando producto...</p>
-            )}
+            <ItemDetail {...product} />
         </div>
     );
 }
 
 export default ItemDetailContainer;
+
+
 
 
